@@ -1,0 +1,10 @@
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+ThinkArchitectureViewer_autogen/
+ThinkArchitectureViewer
+build/
+ghidra/
+ghidra-bin/
+UEFITool/
