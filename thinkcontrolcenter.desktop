@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=ThinkControlCenter
+Comment=Lenovo Hardware, ICE Cooling & Firmware Attributes Manager
+Exec=/run/media/lechibang/work/projects/thinkcontrolcenter/thinkcontrolcenter
+Icon=utilities-system-monitor
+Terminal=false
+Type=Application
+Categories=System;Settings;HardwareSettings;
+StartupNotify=true

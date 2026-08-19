@@ -9,6 +9,7 @@
 * **Intelligent Cooling Engine (ICE):** Configure high-level BIOS cooling profiles (`Better Acoustic Performance`, `Better Thermal Performance`, and `Full Speed 100%`) without rebooting into UEFI setup.
 * **Firmware Attributes Management (`think-lmi`):** Directly query and modify Lenovo BIOS settings from Linux (Thermal Alerts, ErP Power Saving, Smart Power On, Wake on LAN).
 * **Live Hardware Telemetry:** Real-time monitoring of CPU usage, RAM utilization, and temperatures for CPU cores, NVMe SSD, and Wi-Fi modules via `/sys/class/hwmon`.
+* **Storage & S.M.A.R.T. Health (`smartctl`):** Real-time disk utilization per partition, filesystem inspection, wear leveling / SSD remaining life %, TBW (Terabytes Written), power-on hours, media error detection, and deep SMART attributes diagnostic scan.
 * **ACPI Sleep & Wakeup Control:** Manage Suspend-to-RAM (S3) wake triggers in `/proc/acpi/wakeup` (such as disabling `XHC` to prevent accidental mouse/keyboard movement from waking the system).
 * **Motherboard Topology Viewer:** Inspect host bridges, LPC controllers, PCIe devices, USB hubs, and connected displays with real-time filtering and search.
 

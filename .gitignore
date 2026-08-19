@@ -8,3 +8,5 @@ build/
 ghidra/
 ghidra-bin/
 UEFITool/
+__pycache__/
+*.pyc
