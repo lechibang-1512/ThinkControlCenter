@@ -5,8 +5,8 @@ cmake_install.cmake
 ThinkArchitectureViewer_autogen/
 ThinkArchitectureViewer
 build/
-ghidra/
-ghidra-bin/
-UEFITool/
+tools/ghidra/
+tools/ghidra-bin/
+tools/UEFITool/
 __pycache__/
 *.pyc

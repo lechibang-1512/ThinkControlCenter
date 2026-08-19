@@ -12,15 +12,15 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
 
 add_executable(ThinkArchitectureViewer
-    main.cpp
-    MainWindow.cpp
-    MainWindow.h
-    HardwareDiscovery.cpp
-    HardwareDiscovery.h
-    SystemMonitor.cpp
-    SystemMonitor.h
-    WakeupManager.cpp
-    WakeupManager.h
+    src/main.cpp
+    src/MainWindow.cpp
+    src/MainWindow.h
+    src/HardwareDiscovery.cpp
+    src/HardwareDiscovery.h
+    src/SystemMonitor.cpp
+    src/SystemMonitor.h
+    src/WakeupManager.cpp
+    src/WakeupManager.h
 )
 
 target_link_libraries(ThinkArchitectureViewer PRIVATE Qt5::Widgets)

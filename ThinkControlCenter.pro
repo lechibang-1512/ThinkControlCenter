@@ -3,13 +3,13 @@ TARGET = ThinkControlCenter
 INCLUDEPATH += .
 QT += core widgets
 
-SOURCES += main.cpp \
-           MainWindow.cpp \
-           HardwareDiscovery.cpp \
-           SystemMonitor.cpp \
-           WakeupManager.cpp
+SOURCES += src/main.cpp \
+           src/MainWindow.cpp \
+           src/HardwareDiscovery.cpp \
+           src/SystemMonitor.cpp \
+           src/WakeupManager.cpp
 
-HEADERS += MainWindow.h \
-           HardwareDiscovery.h \
-           SystemMonitor.h \
-           WakeupManager.h
+HEADERS += src/MainWindow.h \
+           src/HardwareDiscovery.h \
+           src/SystemMonitor.h \
+           src/WakeupManager.h

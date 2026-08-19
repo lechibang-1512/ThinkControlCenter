@@ -501,11 +501,11 @@ class DiskScanner:
                     wear_pct = nvme_log.get("percentage_used")
                     if "temperature" in nvme_log and temp_c is None:
                         temp_c = nvme_log["temperature"]
-                    data_written = nvme_log.get("data_units_written", 0)
-                    if data_written:
+                    data_written = nvme_log.get("data_units_written")
+                    if data_written is not None:
                         tbw_written = (data_written * 512000) / (1024**4)
-                    data_read = nvme_log.get("data_units_read", 0)
-                    if data_read:
+                    data_read = nvme_log.get("data_units_read")
+                    if data_read is not None:
                         tb_read = (data_read * 512000) / (1024**4)
                     media_errors = nvme_log.get("media_errors", 0)
                     crit_warn = nvme_log.get("critical_warning", 0)
@@ -526,14 +526,35 @@ class DiskScanner:
                         "thresh": attr.get("thresh"),
                         "raw": raw_str
                     })
-                    if name_attr in ["Wear_Leveling_Count", "SSD_Life_Left"]:
+                    name_attr = attr.get("name", "")
+                    attr_id = attr.get("id")
+                    
+                    if name_attr in ["Wear_Leveling_Count", "SSD_Life_Left", "Media_Wearout_Indicator"] or attr_id in [177, 231, 232, 169]:
                         wear_pct = 100 - attr.get("value", 100)
-                    elif name_attr == "Reallocated_Sector_Ct":
+                    elif name_attr in ["Percent_Lifetime_Remain", "Remaining_Lifetime_Perc"] or attr_id in [202]:
+                        wear_pct = 100 - attr.get("value", 100)
+                    elif name_attr == "Percent_Lifetime_Used":
+                        wear_pct = attr.get("value", 0)
+                        
+                    elif name_attr == "Reallocated_Sector_Ct" or attr_id == 5:
                         reallocated_sectors = raw_val
-                    elif name_attr == "Total_LBAs_Written":
-                        tbw_written = (raw_val * 512) / (1024**4)
-                    elif name_attr == "Total_LBAs_Read":
-                        tb_read = (raw_val * 512) / (1024**4)
+                        
+                    elif name_attr in ["Total_LBAs_Written", "Host_Writes_32MiB", "Host_Writes_GiB", "Data_Units_Written"] or attr_id == 241:
+                        if name_attr == "Host_Writes_32MiB":
+                            tbw_written = (raw_val * 32 * 1024 * 1024) / (1024**4)
+                        elif name_attr == "Host_Writes_GiB":
+                            tbw_written = raw_val / 1024.0
+                        else:
+                            tbw_written = (raw_val * 512) / (1024**4)
+                            
+                    elif name_attr in ["Total_LBAs_Read", "Host_Reads_32MiB", "Host_Reads_GiB"] or attr_id == 242:
+                        if name_attr == "Host_Reads_32MiB":
+                            tb_read = (raw_val * 32 * 1024 * 1024) / (1024**4)
+                        elif name_attr == "Host_Reads_GiB":
+                            tb_read = raw_val / 1024.0
+                        else:
+                            tb_read = (raw_val * 512) / (1024**4)
+                            
                     elif name_attr == "Temperature_Celsius" and temp_c is None:
                         temp_c = raw_val
 
